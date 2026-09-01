@@ -1,0 +1,37 @@
+{
+  "name": "baoyu-skills",
+  "version": "1.0.1",
+  "owner": "Tokenaissance",
+  "updated_at": "2026-09-01",
+  "status": "active",
+  "maturity_tier": "library",
+  "lifecycle_stage": "maintained",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "readme_languages": [
+    "zh-CN",
+    "en"
+  ],
+  "upstream_inspiration": "JimLiu/baoyu-skills",
+  "upstream_sync": {
+    "policy": "maintained fork of JimLiu/baoyu-skills; main is a pure upstream mirror (12h sync via .github/workflows/sync-upstream.yml), the fastagent branch carries the package shell and adaptation"
+  },
+  "defaults": {
+    "skill_name_prefix": "baoyu",
+    "max_preferred_hyphen_parts": 2,
+    "copyright": "Copyright (c) 2026 Tokenaissance",
+    "attribution": "Original skills by Jim Liu (宝玉) / baoyu-skills"
+  },
+  "target_platforms": [
+    "fastagent",
+    "claude"
+  ],
+  "factory_components": [
+    "references",
+    "evals"
+  ],
+  "release_gates": [
+    "validate_skill",
+    "trigger_eval"
+  ]
+}

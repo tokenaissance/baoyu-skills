@@ -1,0 +1,198 @@
+{
+  "schema_version": "2.0.0-fastagent-lite",
+  "generated_at": "2026-09-01",
+  "package": {
+    "name": "baoyu-skills",
+    "version": "1.0.1",
+    "owner": "Tokenaissance",
+    "maturity_tier": "library",
+    "lifecycle_stage": "maintained",
+    "upstream_inspiration": "JimLiu/baoyu-skills",
+    "upstream_sync": {
+      "policy": "maintained fork of JimLiu/baoyu-skills; main is a pure upstream mirror (12h sync via .github/workflows/sync-upstream.yml), the fastagent branch carries the package shell and adaptation"
+    }
+  },
+  "intent": {
+    "description": "Baoyu Skills 合集——宝玉（Jim Liu）的 21 个 Claude 内容技能整仓路由到一个根 SKILL.md：翻译/精翻（translate）、发布公众号/微博/X（publish）、URL 或 X 推文转 Markdown、YouTube 字幕下载、微信群聊精华总结、文章配图/封面图/信息图/知识漫画/小红书图片/幻灯片 生成、图片压缩、Markdown 格式化与转 HTML、SVG 图表（架构图/流程图）、Electron 应用反编译、AI 图像生成（多后端）。对\"翻译这篇文章\"、\"把网页转成 markdown\"、\"发公众号/微博/X\"、\"下载 YouTube 字幕\"、\"总结群聊\"、\"给文章配图/生成封面/信息图/漫画/小红书图片/幻灯片\"、\"画架构图/流程图\"、\"压缩图片\"、\"格式化 markdown\"、\"md 转 html\"、\"提取 Electron 应用源码\"、\"生成图片\"等意图触发。",
+    "job_to_be_done": "把宝玉的 21 个内容技能整仓打包为 fastagent 单框架 skill：一个根 SKILL.md 路由到对应子技能（翻译/发布/转换/抓取/社群总结/图像生成/图表/反编译），子技能本体在 {baseDir}/skills/<name>/SKILL.example.md 完整读后执行",
+    "target_users": [
+      "fastagent operator",
+      "Claude Code 用户"
+    ],
+    "inputs": [],
+    "outputs": [],
+    "exclusions": [
+      "单次翻译/单次总结不是本包职责（子技能各有完整工作流，根路由只负责选技能）",
+      "投资建议（本包是内容工具）"
+    ],
+    "defaults": {
+      "skill_name_prefix": "baoyu",
+      "max_preferred_hyphen_parts": 2,
+      "copyright": "Copyright (c) 2026 Tokenaissance",
+      "attribution": "Original skills by Jim Liu (宝玉) / baoyu-skills"
+    }
+  },
+  "triggers": {
+    "should_trigger": [
+      "把这篇英文文章翻译成中文并整理成 markdown",
+      "把这篇 markdown 发布到公众号",
+      "把这篇 markdown 发布到微博",
+      "把这篇 markdown 发布到 X",
+      "把这个网页转成 markdown",
+      "把这条 X 推文转成 markdown",
+      "下载这个 YouTube 视频的字幕",
+      "把微信群聊精华整理成 markdown 摘要",
+      "给这篇 markdown 文章配图",
+      "给这篇 markdown 文章生成封面图",
+      "把这份数据做成信息图并附 markdown 说明",
+      "画一个知识漫画，输出 markdown 分镜",
+      "生成小红书种草图片和 markdown 文案",
+      "把这份 markdown 做成幻灯片",
+      "下载并压缩这些图片",
+      "把网页抓下来的 markdown 格式化",
+      "把这份 markdown 转成 html 发到公众号",
+      "把这个 markdown 画成架构图",
+      "提取这个 Electron 应用的源码",
+      "用 AI 生成一张图片并配 markdown 说明"
+    ],
+    "should_not_trigger": [
+      "写一个 Python 函数计算斐波那契数列",
+      "帮我算一下 23 乘以 47",
+      "设计一个用户登录的数据库表结构",
+      "解释一下什么是量子纠缠"
+    ],
+    "near_neighbor": [
+      "这篇文章的翻译腔太重了",
+      "帮我润色一下这段文字"
+    ]
+  },
+  "workflow": {
+    "router_rules": [
+      "读根 SKILL.md 路由表，按用户意图选子技能；拿不准先问用户",
+      "先完整读 {baseDir}/skills/<name>/SKILL.example.md 再执行，不凭技能名猜流程"
+    ],
+    "compact_workflow": [
+      "路由 → 读子技能 SKILL.example.md → 检查 EXTEND.md 偏好（缺且需 first-time setup 则 BLOCKING 询问）→ 按子技能工作流执行（脚本走 ${BUN_X} {baseDir}/skills/<name>/scripts/…）→ 输出落盘到该技能约定目录"
+    ],
+    "gate_ladder": [
+      "validate_skill 0/0",
+      "trigger_eval 全过",
+      "secret scan 0 命中"
+    ],
+    "output_contract": [
+      "输出写入各子技能约定目录（translate/、posts/、cover-image/、diagram/、youtube-transcript/ 等），不全在对话里展示"
+    ]
+  },
+  "resources": {
+    "references": [],
+    "scripts": [
+      "scripts/materialize-skills.mjs",
+      "scripts/install-baoyu-skills.sh"
+    ],
+    "evals": [
+      "evals/trigger_cases.json"
+    ],
+    "reports": [
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json",
+      "reports/prior-art-research.md",
+      "reports/creation-handoff.md"
+    ],
+    "skills": [
+      "skills/baoyu-article-illustrator",
+      "skills/baoyu-comic",
+      "skills/baoyu-compress-image",
+      "skills/baoyu-cover-image",
+      "skills/baoyu-danger-gemini-web",
+      "skills/baoyu-danger-x-to-markdown",
+      "skills/baoyu-diagram",
+      "skills/baoyu-electron-extract",
+      "skills/baoyu-format-markdown",
+      "skills/baoyu-image-gen",
+      "skills/baoyu-infographic",
+      "skills/baoyu-markdown-to-html",
+      "skills/baoyu-post-to-wechat",
+      "skills/baoyu-post-to-weibo",
+      "skills/baoyu-post-to-x",
+      "skills/baoyu-slide-deck",
+      "skills/baoyu-translate",
+      "skills/baoyu-url-to-markdown",
+      "skills/baoyu-wechat-summary",
+      "skills/baoyu-xhs-images",
+      "skills/baoyu-youtube-transcript"
+    ]
+  },
+  "portability": {
+    "canonical_format": "agent-skills",
+    "adapter_targets": [
+      "fastagent",
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible"
+    ],
+    "activation": {
+      "mode": "intent"
+    },
+    "execution": {
+      "context": "collection",
+      "shell": "bash",
+      "languages": [
+        "bun",
+        "node",
+        "typescript"
+      ]
+    },
+    "trust": {
+      "source_tier": "remote",
+      "remote_inline_execution": "forbid",
+      "remote_metadata_policy": "allow read-only public content; forbid uploading user chats or posts without consent",
+      "generated_public_claims": "content-tool"
+    },
+    "permissions": {
+      "network": "HTTPS fetch for url-to-markdown / youtube-transcript / x-to-markdown; publishing to WeChat/Weibo/X only with user-confirmed content",
+      "file_write": "skill output dirs only (translate/, posts/, cover-image/, diagram/, youtube-transcript/, …); EXTEND.md preference files; never modify user config outside .baoyu-skills/",
+      "subprocess": "bun for the bundled skill scripts (scripts/*.ts); no arbitrary code execution",
+      "interactive": "first-time EXTEND.md setup; publishing confirmation; image backend selection; consent for reverse-engineered X API"
+    },
+    "degradation": {
+      "fastagent": "canonical-source",
+      "openai": "metadata-adapter",
+      "claude": "canonical-source",
+      "generic": "neutral-source",
+      "agent-skills-compatible": "canonical-source"
+    }
+  },
+  "gates": {
+    "scaffold": [
+      "SKILL.md frontmatter with name and description",
+      "README hook and natural trigger examples",
+      "clear exclusions (one-off summaries/translations are not this package's job alone)"
+    ],
+    "production": [
+      "agents/interface.yaml",
+      "evals/trigger_cases.json",
+      "manifest.json with semver version",
+      "install and README verification (npx skills add and git clone paths)",
+      "root-only discoverable SKILL.md entrypoint (nested skills stored as SKILL.example.md)"
+    ],
+    "library": [
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json",
+      "portability notes across Agent platforms",
+      "trust boundary (local content read-only; publishing gated on user confirmation)"
+    ],
+    "governed": [
+      "secret scan (no API keys / tokens committed)",
+      "rollback boundary (scripts never modify user config or holdings)",
+      "public claim guard (validation and trigger claims match tests)",
+      "README, MIT LICENSE, and install evidence verified"
+    ]
+  },
+  "evidence_boundary": {
+    "generated_reports_are_evidence": true,
+    "planned_work_is_evidence": false,
+    "missing_external_or_human_evidence_label": "missing evidence",
+    "public_claim_policy": "claim only what local validation, install proof, human review, or provider-backed evidence actually supports"
+  }
+}

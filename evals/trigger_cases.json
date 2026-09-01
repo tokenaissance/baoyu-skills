@@ -1,0 +1,152 @@
+{
+  "recommended_threshold": 0.34,
+  "description_required_concepts": [
+    "translate",
+    "publish"
+  ],
+  "positive_concepts": {
+    "translate": [
+      "翻译",
+      "精翻",
+      "快翻",
+      "译成",
+      "翻译一下",
+      "翻译这篇文章",
+      "translate",
+      "localize",
+      "本地化"
+    ],
+    "publish": [
+      "发布",
+      "公众号",
+      "微博",
+      "头条文章",
+      "贴图",
+      "发公众号",
+      "发微博",
+      "发到",
+      "post",
+      "publish",
+      "tweet"
+    ],
+    "markdown": [
+      "markdown",
+      "md 转",
+      "转 markdown",
+      "转成 markdown",
+      "格式化",
+      "转 html",
+      "format"
+    ],
+    "image": [
+      "图片",
+      "图像",
+      "配图",
+      "封面",
+      "信息图",
+      "漫画",
+      "小红书",
+      "幻灯片",
+      "压缩",
+      "插图",
+      "image",
+      "infographic",
+      "comic",
+      "cover",
+      "slides"
+    ],
+    "diagram": [
+      "图表",
+      "架构图",
+      "流程图",
+      "时序图",
+      "画个图",
+      "画图",
+      "diagram",
+      "flowchart",
+      "svg"
+    ],
+    "video_url": [
+      "youtube",
+      "字幕",
+      "subtitle",
+      "transcript",
+      "视频"
+    ],
+    "wechat_chat": [
+      "群聊",
+      "微信群",
+      "总结群聊",
+      "群聊精华",
+      "wechat"
+    ],
+    "web_url": [
+      "网页",
+      "url",
+      "这个链接",
+      "网页转"
+    ],
+    "x_url": [
+      "x 推文",
+      "twitter 转",
+      "x 转",
+      "tweet 转"
+    ],
+    "electron": [
+      "electron",
+      "asar",
+      "反编译",
+      "decompile",
+      "extract electron",
+      "应用源码"
+    ],
+    "scrape": [
+      "下载",
+      "提取",
+      "抓取",
+      "爬",
+      "download",
+      "extract"
+    ]
+  },
+  "negative_patterns": [
+    "代码",
+    "计算",
+    "算法",
+    "数据库",
+    "量子",
+    "解释一下"
+  ],
+  "should_trigger": [
+    "把这篇英文文章翻译成中文并整理成 markdown",
+    "把这篇 markdown 发布到公众号",
+    "把这篇 markdown 发布到微博",
+    "把这篇 markdown 发布到 X",
+    "把这个网页转成 markdown",
+    "把这条 X 推文转成 markdown",
+    "下载这个 YouTube 视频的字幕",
+    "把微信群聊精华整理成 markdown 摘要",
+    "给这篇 markdown 文章配图",
+    "给这篇 markdown 文章生成封面图",
+    "把这份数据做成信息图并附 markdown 说明",
+    "画一个知识漫画，输出 markdown 分镜",
+    "生成小红书种草图片和 markdown 文案",
+    "把这份 markdown 做成幻灯片",
+    "下载并压缩这些图片",
+    "把网页抓下来的 markdown 格式化",
+    "把这份 markdown 转成 html 发到公众号",
+    "把这个 markdown 画成架构图",
+    "提取这个 Electron 应用的源码",
+    "用 AI 生成一张图片并配 markdown 说明"
+  ],
+  "should_not_trigger": [
+    "写一个 Python 函数计算斐波那契数列",
+    "帮我算一下 23 乘以 47",
+    "设计一个用户登录的数据库表结构",
+    "解释一下什么是量子纠缠"
+  ],
+  "near_neighbor": [
+    "这篇文章的翻译腔太重了",
+    "帮我润色一下这段文字"
+  ]
+}
